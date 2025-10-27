@@ -4,7 +4,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    Terraform-build:
+    Terraform-plan:
         runs-on: ubuntu-latest
         steps:
             # Step 1: checkout repository
@@ -30,16 +30,31 @@ jobs:
 
                 # terraform validate
                 terraform validate
-    Terraform-plan:
-        runs-on: ubuntu-latest
-        needs: Terraform-build
-        steps:
+            
+            # Step 4: Terraform plan
             - name: Terraform plan
-              run:  terraform plan
+              run:  terraform plan -out=tfplan
+
+            - name: Upload tfplan file
+              uses:  actions/upload-artifact@v4
+              with:
+                name: tfplan
+                path: tfplan
 
     Terraform-apply:
         runs-on: ubuntu-latest
         needs: Terraform-plan
         steps:
-            - name: Terraform apply
-              run: terraform apply
+            - name: checkout repository
+              uses: actions/checkout@v3
+
+            - name: setup terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: download terraform plan
+              uses:  actions/download-artifact@v4
+              with:
+                name: tfplan
+
+            - name: Terraform plan
+              run:  terraform plan -auto-approve tfplan
