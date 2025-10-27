@@ -4,7 +4,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    build:
+    Terraform-build:
         runs-on: ubuntu-latest
         steps:
             # Step 1: checkout repository
@@ -21,6 +21,7 @@ jobs:
             - name: Terraform Initialise providers
               run:  terraform init
 
+
             # Step 3: Terraform formating and validate code
             - name: Terraform formatting and validate code
               run:  |
@@ -29,3 +30,15 @@ jobs:
 
                 # terraform validate
                 terraform validate
+    Terraform-plan:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Terraform plan
+              run:  terraform plan
+
+    Terraform-apply:
+        runs-on: ubuntu-latest
+        needs: Terraform-plan
+        steps:
+            - name: Terraform apply
+              run: terraform apply
