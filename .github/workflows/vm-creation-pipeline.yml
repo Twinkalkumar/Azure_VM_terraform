@@ -1,0 +1,31 @@
+name: vm-creation-pipeline
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            # Step 1: checkout repository
+            - name: checkout repository
+              uses: actions/checkout@v3
+
+            # Step 2: Terraform setup
+            - name: Terraform Setup
+              uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: "~>1.0.0"
+            
+            # Step 2: Terraform Initialise Providers and required plugins
+            - name: Terraform Initialise providers
+              run:  terraform init
+
+            # Step 3: Terraform formating and validate code
+            - name: Terraform formatting and validate code
+              run:  |
+                # terraform formate
+                terraform fmt
+
+                # terraform validate
+                terraform validate
