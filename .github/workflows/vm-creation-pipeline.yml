@@ -60,6 +60,7 @@ jobs:
     Terraform-apply:
         runs-on: ubuntu-latest
         needs: Terraform-plan
+        environment: Apply
         steps:
             - name: checkout repository
               uses: actions/checkout@v3
