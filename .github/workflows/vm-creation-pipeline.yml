@@ -18,8 +18,6 @@ jobs:
             # Step 2: Terraform setup
             - name: Terraform Setup
               uses: hashicorp/setup-terraform@v3
-              with:
-                terraform_version: "~>1.0.0"
             
             # Step 2: Terraform Initialise Providers and required plugins
             - name: Terraform Initialise providers
