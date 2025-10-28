@@ -19,13 +19,13 @@ variable "tags" {
   }
 }
 
-variable "Environment" {
-  type = map(string)
-  default = {
-    "subscription_id" = "0aef9e33-85e8-4f22-9173-6ce19a226d16"
-    "tenant_id"       = "477b21a6-727e-413f-b5b8-cd0f27c02b6b"
-  }
-}
+# variable "Environment" {
+#   type = map(string)
+#   default = {
+#     "subscription_id" = "0aef9e33-85e8-4f22-9173-6ce19a226d16"
+#     "tenant_id"       = "477b21a6-727e-413f-b5b8-cd0f27c02b6b"
+#   }
+# }
 
 #variable "client_id" {
 #  default = "242c76da-6bd5-459d-8a80-5ecca5a5b027"
