@@ -5,7 +5,7 @@ variable "rg_name" {
 }
 
 variable "rg_location" {
-  default = "eastus"
+  default = "westus2"
   type    = string
 }
 
