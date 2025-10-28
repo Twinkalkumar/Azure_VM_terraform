@@ -42,6 +42,7 @@ jobs:
                 client-id: ${{ secrets.AZURE_CLIENT_ID }}
                 tenant-id: ${{ secrets.AZURE_TENANT_ID }}
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+                
             
             - name: verify azure login
               run: az account show
@@ -71,5 +72,5 @@ jobs:
               with:
                 name: tfplan
 
-            - name: Terraform plan
-              run:  terraform plan -auto-approve tfplan
+            - name: Terraform apply
+              run:  terraform apply -auto-approve tfplan
